@@ -1,13 +1,15 @@
 version: '1.0'
 steps:
-  build_step:
+  build_image:
+    title: Building Image
     type: build
     image-name: SpellChucker/test-ci
-    dockerfile: Dockerfile
     working_directory: ${{main_clone}}
+    dockerfile: Dockerfile
     tag: ${{CF_BRANCH}}
 
   unit_tests:
+    title: Running Tests
     image: ${{build_step}}
     fail-fast: false
     commands:

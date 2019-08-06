@@ -20,7 +20,7 @@ steps:
     stage: build
   unit_tests:
     title: Running Tests
-    image: ${{build}}
+    image: ${{build_image}}
     fail-fast: false
     commands:
       - npm test

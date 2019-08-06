@@ -23,5 +23,6 @@ steps:
     image: ${{build_image}}
     fail-fast: false
     commands:
+      - npm install
       - npm test
     stage: test

@@ -5,11 +5,11 @@ stages:
   - test
 steps:
   main_clone:
-    type: "git-clone"
-    description: "Cloning main repository..."
-    repo: "SpellChucker/test-ci"
-    revision: "${{CF_BRANCH}}"
-    stage: "clone"
+    type: git-clone
+    description: Cloning main repository...
+    repo: SpellChucker/test-ci
+    revision: ${{CF_BRANCH}}
+    stage: clone
   build_image:
     title: Building Image
     type: build
@@ -17,9 +17,11 @@ steps:
     working_directory: ${{main_clone}}
     dockerfile: Dockerfile
     tag: ${{CF_BRANCH}}
+    stage: build
   unit_tests:
     title: Running Tests
     image: ${{build_step}}
     fail-fast: false
     commands:
       - npm test
+    stage: test
